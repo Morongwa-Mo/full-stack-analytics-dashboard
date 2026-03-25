@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 export default function EmbeddableDashboard() {
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJzZWN1cml0eVRva2VuSWQiOiJjOWVlY2E1NC1kNjg2LTQ5NWUtODMwYy04ZTM3YzBjNTJkMzIiLCJpYXQiOjE3NzQ0MzE4NjEsImV4cCI6MTc3NTAzNjY2MX0.2MlMwzWwadBapPo9xiKsA46qguSr9kx4oK74IU6uMWI";
+  const [token, setToken] = useState("");
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const getToken = async () => {
+      try {
+        const response = await fetch("http://localhost:3001/api/token");
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || "Failed to fetch token");
+        }
+
+        setToken(data.token);
+      } catch (err) {
+        setError(err.message);
+      }
+    };
+
+    getToken();
+  }, []);
+
+  if (error) return <p>Error: {error}</p>;
+  if (!token) return <p>Loading dashboard...</p>;
 
   return React.createElement("em-beddable", { token });
 }
