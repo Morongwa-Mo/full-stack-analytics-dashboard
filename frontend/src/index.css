@@ -1,0 +1,340 @@
+.title{
+  margin: 20px 30px 20px 30px;
+  border-bottom:1px solid rgb(31, 10, 93);
+  padding-bottom:8px;
+}
+.tabs{
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  list-style: none;
+  margin: 20px 30px 20px 30px;
+  padding: 0;
+}
+#tabList{
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  margin: 0;
+  padding: 0;
+}
+
+.tabList{
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+ list-style: none;
+}
+
+
+
+.introPara{
+  margin: 20px 30px 20px 30px;
+  line-height: 1.6;
+}
+
+
+.intro{
+  
+  padding: 20px;
+  margin: 20px 30px 20px 30px;
+  border-radius: 10px;        /* rounded corners */
+  background-color: #f5f5f5; 
+  box-shadow: 0 4px 12px rgba(19, 19, 205, 0.08);/* soft background */
+
+}
+#Kpis ul {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  gap: 2em;
+}
+
+.totRev, .accRate, .avgTime {
+  font-size: 1em;
+  color: #333;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(19, 19, 205, 0.08);/* soft background */
+  line-height: 2;
+  text-align: center;
+}
+
+
+#Kpis h2{
+  text-align: center;
+  
+}
+
+
+#Kpis {
+  padding: 0 40px;
+}
+#Kpis li {
+  width: 400px;
+}
+#Kpis h3, #secondaryKpis h3{
+  border-bottom: .5px solid rgb(31, 10, 93);
+  padding-bottom: .2em;
+  margin: 20px 30px 20px 30px;
+  display: inline-block;
+}
+
+.monRev, .actUsers, .convRate, .avgDealSize, .custLTV, .churnRate {
+  font-size: 1em;
+  color: #333;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(19, 19, 205, 0.08);/* soft background */
+  line-height: 2;
+  text-align: center;
+}
+
+#secondaryKpis ul {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 15px 0;
+  margin: 80px 30px 20px 30px;
+  list-style: none;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.secondaryKpis li {
+  width: 160px;
+}
+
+
+.logo {
+  height: 40px;
+
+}
+
+.filters {
+  
+  gap: 2em;
+  width: 15%;
+  background: white;
+  border-radius: 10px;
+  margin:25px;
+  padding: 20px;
+  line-height: 2;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.filterGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filters select {
+  width: 100%;
+  padding: 10px;
+}
+
+.filters h2 {
+  border-bottom: .5px solid rgb(31, 10, 93);
+  padding-bottom: .1em;
+}
+
+.dataExploration {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: 0px;
+}
+
+
+.Viz {
+  flex: 1;
+  margin: 25px 25px 25px 0;
+  display: grid;
+  gap: 20px;
+}
+
+.datViz {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.vis1 {
+
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 460px;
+}
+
+.vis2 {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 400px;
+}
+
+.vis3, .vis4 {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 180px;
+}
+.datHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  margin-bottom: 10px;
+ 
+}
+.causal{
+  display: flex;
+  gap: 20px;
+  margin: 25px;
+}
+
+.casFilters {
+   
+  gap: 2em;
+  width: 15%;
+  background: white;
+  border-radius: 10px;
+  margin:25px;
+  padding: 20px;
+  line-height: 2;
+  list-style: none;
+}
+.casFilters h2 {
+  border-bottom: .5px solid rgb(31, 10, 93);
+  padding-bottom: .1em;
+}
+
+.Visuals {
+  width: 85%;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 25px 25px 25px 0;
+}
+
+.casKPIs {
+  display: flex;
+   justify-content: space-between;
+  gap: 2rem;
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 180px;
+}
+
+.vizInsight {
+  display: flex;
+  justify-content:safe;
+  gap: 1rem;
+  border-radius: 10px;
+  padding: 20px;
+
+}
+
+.KPI1, .KPI2, .KPI3 {
+
+  background: white;
+  border-radius: 10px;
+  padding: 20px 90px;
+  min-height: 150px;
+  text-align: center;
+}
+
+.casVis, .KPI4 {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  min-height: 320px;
+  gap:10rem;
+}
+.casVis {
+  width: 60%;
+  min-height: 340px;
+  margin-right: 20px;
+}
+.KPI4 {
+  width: 35%;
+  min-height: 340px;
+}
+
+.casHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 3; 
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(4, 2, 21, 0.87);
+  background-color: #d0e1ee;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2em;
+  line-height: 1.1;
+  /*border-bottom:1px solid rgb(31, 10, 93);*/
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}

@@ -1,2 +1,0 @@
-import{S as t,u as o}from"./p-CGA4aHD1.js";import"./p-DbZkpY-o.js";import"./p-B92F7s1h.js";const a=()=>null,e={name:"EmptyBlockPro",label:"Empty Block",category:"Layout",defaultWidth:450,defaultHeight:120},p=t(a,{}),s=()=>({}),m={Component:a,meta:e,preview:p,config:{props:s}},r=m.preview,l=m.meta,i=o(m.Component,l,m.config);export{i as default,l as meta,r as preview};
-//# sourceMappingURL=p-B5nGoNRD.js.map
