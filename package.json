@@ -1,0 +1,24 @@
+{
+  "name": "embeddable_hubspot_dash",
+  "version": "1.0.0",
+  "description": "",
+  "main": "createConnection.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wimmyteam/embeddable_hubspot_dash.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/wimmyteam/embeddable_hubspot_dash/issues"
+  },
+  "homepage": "https://github.com/wimmyteam/embeddable_hubspot_dash#readme",
+  "dependencies": {
+    "dotenv": "^17.3.1"
+  }
+}
