@@ -3,8 +3,5 @@ node_modules/
 
 #Ignore .env
 .env
-
+#Ignore servive account file within
 backend/secrets
-
-# If you want to ignore it only inside my-react-app
-my-react-app/node_modules/

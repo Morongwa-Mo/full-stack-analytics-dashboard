@@ -1,0 +1,32 @@
+cubes:
+  - name: all_companies
+    title: Company Data
+    sql_table: all_companies
+    data_source: hubspot_BQ
+    
+    joins:
+      - name: all_deals
+        sql: "{CUBE}.record_id = {all_deals}.associated_company_ids"
+        relationship: one_to_many
+    
+    dimensions:
+      - name: company_id
+        sql: record_id
+        type: number
+        primary_key: true
+
+      - name: company_name
+        sql: company_name
+        type: string
+        
+      - name: industry
+        sql: industry
+        type: string
+        
+      - name: number_of_employees
+        sql: number_of_employees
+        type: number
+        
+     
+    
+   

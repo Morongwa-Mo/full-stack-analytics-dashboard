@@ -1,8 +1,13 @@
 require("dotenv").config();
 
+const fs = require("fs");
 const BASE_URL = "https://api.us.embeddable.com"; // or eu
 const apiKey = process.env.EMBEDDABLE_API_KEY;
-const connectionName = "hubspot_BQ"
+const connectionName = "hubspot_BQ";
+const serviceAccount = JSON.parse(
+  fs.readFileSync("backend/secrets/serviceAccount.json", "utf-8")
+);
+
 async function createConnection() {
   try {
     const resp = await fetch(`${BASE_URL}/api/v1/connections`, {
@@ -16,11 +21,8 @@ async function createConnection() {
         type: "bigquery",
         credentials: {
           projectId: "wimmy-dev",
-          credentials: {
-            // paste FULL service account JSON here
-          }
-        }
-      })
+          credentials: serviceAccount
+      }})
     });
 
     const data = await resp.json();
