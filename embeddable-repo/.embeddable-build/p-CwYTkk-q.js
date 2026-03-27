@@ -1,0 +1,2 @@
+import{j as e}from"./p-CMARrKgD.js";const r=({dimensionsAndMeasures:r,searchValue:s,theme:n})=>{const o=e(n);return r.filter((e=>o.dimensionOrMeasureTitle(e).toLowerCase().includes(s.toLowerCase()))).map((e=>({value:e.name,label:o.dimensionOrMeasureTitle(e)})))};export{r as a};
+//# sourceMappingURL=p-CwYTkk-q.js.map

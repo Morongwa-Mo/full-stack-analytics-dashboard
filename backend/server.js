@@ -26,7 +26,7 @@ app.get("/api/token", async (req, res) => {
             userId: "test-user",
             regions: ["us-east", "eu-west"],
           },
-          user: "test@domain.com",
+          user: "morongwa.wimmy@gmail.com",
         }),
       }
     );

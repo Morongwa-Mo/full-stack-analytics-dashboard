@@ -1,0 +1,2 @@
+import{D as a}from"./p-CGA4aHD1.js";import{P as o,a4 as e,H as p}from"./p-DLKeWdHV.js";import{p as r}from"./p-7VPFaCqk.js";import"./p-DbZkpY-o.js";import"./p-B92F7s1h.js";const s=({value:a,onChange:p})=>o.jsx(e,{value:a,onChange:p}),t={name:"MarkdownEditor",label:"Markdown editor",type:r},n=a(s,t,{inputs:(a,o)=>({value:a,onChange:a=>o(p.of(a))})});export{n as default,t as meta};
+//# sourceMappingURL=p-C68oNVL_.js.map

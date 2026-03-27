@@ -1,0 +1,2 @@
+import{B as n}from"./p-CLi_QLjF.js";const r=(n,r,o)=>{var l;if(!n||!r)return;const t=n!=null&&n.relativeTimeString?(l=o.defaults.dateRangesOptions.find((r=>r.value===(n==null?void 0:n.relativeTimeString))))==null?void 0:l.getRange():n,u=o.defaults.comparisonPeriodsOptions.find((n=>n.value===r));return u==null?void 0:u.getRange(t)},o=(r,o)=>{const l=o.defaults.comparisonPeriodsOptions.find((n=>n.value===r));return l?n(l.label):""};export{r as o,o as u};
+//# sourceMappingURL=p-XFH485lu.js.map

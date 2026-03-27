@@ -1,0 +1,124 @@
+cubes:
+  - name: all_deals
+    title: Deals data
+    sql_table: deals
+    data_source: hubspot_BQ
+    
+  
+    dimensions:
+      - name: deal_id
+        sql: record_id                                   
+        type: number
+        primary_key: true
+        
+      - name: rfp_date
+        sql: rfp_ate
+        type: time
+        
+      - name: proposal_sumission_date
+        sql: DATE(proposal_submission_date)
+        type: time
+        
+      - name: deal_name
+        sql: deal_name
+        type: string
+        
+      - name: deal_stage
+        sql: deal_stage
+        type: string
+
+      - name: deal_type
+        sql: deal_type
+        type: string
+
+      - name: deal_owner
+        sql: deal_owner
+        type: string
+
+      - name: closed_won
+        sql: Is_closed_won
+        type: boolean
+
+      - name: closed_lost
+        sql: Is_closed_lost
+        type: boolean
+
+      - name: created_date
+        sql: DATE(Created_date)
+        type: time
+
+      - name: days_to_close
+        sql: days_to_close
+        type: number
+
+      - name: deal_probability
+        sql: deal_probability
+        type: number
+    
+    measures:
+        
+      - name: total_revenue
+        type: sum
+        sql: amount
+
+      - name: total_deals
+        type: count
+        
+      - name: average_days_to_close_deal
+        type: avg
+        sql:  CASE
+               WHEN is_closed_won = true OR is_closed_lost = true
+               THEN DATE_DIFF(DATE(close_date), DATE(created_date), DAY)
+             END
+      - name: closed_deals
+        type: count 
+        sql: CASE
+                WHEN is_closed_won=true OR is_closed_lost=true
+                THEN 1
+              END
+     
+      - name: won_deals
+        type: count
+        sql: CASE
+                WHEN is_closed_won=true 
+                THEN 1
+              END
+
+      - name: sales_qualified
+        type: count
+        sql: CASE
+                WHEN deal_stage='Sales qualilified'
+                THEN 1
+              END
+
+      - name: new_business_deals
+        type: count
+        sql: CASE
+                WHEN deal_type = 'New business'
+                THEN 1
+              END
+
+      - name: existing_business_deals
+        type: count
+        sql: CASE
+                WHEN deal_type= 'existing business'
+                THEN 1
+              END
+
+      - name: average_request_to_submission_time
+        type: avg
+        sql:  CASE
+               WHEN proposal_submission_date IS NOT NULL
+                    AND rfp_date IS NOT NULL
+               THEN DATE_DIFF(DATE(proposal_submission_date), DATE(rfp_date), DAY)
+             END
+
+      - name: overall_conversion_rate
+        type: number
+        sql: ${won_deals}* 1.0 / NULLIF(${total_deals},0) * 100
+
+      - name: qualified_to_won_rate
+        type: number
+        sql: ${won_deals}* 1.0 / NULLIF(${sales_qualified},0) * 100
+
+     

@@ -1,0 +1,46 @@
+import { X as by } from './index-CnLFSN1m-CiKoWgQc-CozJeD_5.js';
+import { r as rt } from './utc-OYNdM3Of-CUwwS7pr-C09mBqI5.js';
+import './embeddable-component-O_vB8keJ.js';
+import './index-BS0D-ICk.js';
+
+function m(n, u) {
+  for (var _ = 0; _ < u.length; _++) {
+    const e = u[_];
+    if (typeof e != "string" && !Array.isArray(e)) {
+      for (const r in e)
+        if (r !== "default" && !(r in n)) {
+          const o = Object.getOwnPropertyDescriptor(e, r);
+          o && Object.defineProperty(n, r, o.get ? o : {
+            enumerable: true,
+            get: () => e[r]
+          });
+        }
+    }
+  }
+  return Object.freeze(Object.defineProperty(n, Symbol.toStringTag, { value: "Module" }));
+}
+var s = { exports: {} }, p = s.exports, a;
+function l() {
+  return a || (a = 1, (function(n, u) {
+    (function(_, e) {
+      n.exports = e(rt());
+    })(p, (function(_) {
+      function e(t) {
+        return t && typeof t == "object" && "default" in t ? t : { default: t };
+      }
+      var r = e(_), o = { name: "ur", weekdays: "اتوار_پیر_منگل_بدھ_جمعرات_جمعہ_ہفتہ".split("_"), months: "جنوری_فروری_مارچ_اپریل_مئی_جون_جولائی_اگست_ستمبر_اکتوبر_نومبر_دسمبر".split("_"), weekStart: 1, weekdaysShort: "اتوار_پیر_منگل_بدھ_جمعرات_جمعہ_ہفتہ".split("_"), monthsShort: "جنوری_فروری_مارچ_اپریل_مئی_جون_جولائی_اگست_ستمبر_اکتوبر_نومبر_دسمبر".split("_"), weekdaysMin: "اتوار_پیر_منگل_بدھ_جمعرات_جمعہ_ہفتہ".split("_"), ordinal: function(t) {
+        return t;
+      }, formats: { LT: "HH:mm", LTS: "HH:mm:ss", L: "DD/MM/YYYY", LL: "D MMMM YYYY", LLL: "D MMMM YYYY HH:mm", LLLL: "dddd، D MMMM YYYY HH:mm" }, relativeTime: { future: "%s بعد", past: "%s قبل", s: "چند سیکنڈ", m: "ایک منٹ", mm: "%d منٹ", h: "ایک گھنٹہ", hh: "%d گھنٹے", d: "ایک دن", dd: "%d دن", M: "ایک ماہ", MM: "%d ماہ", y: "ایک سال", yy: "%d سال" } };
+      return r.default.locale(o, null, true), o;
+    }));
+  })(s)), s.exports;
+}
+var i = l();
+const c = /* @__PURE__ */ by(i), y = /* @__PURE__ */ m({
+  __proto__: null,
+  default: c
+}, [i]);
+
+export { y as u };
+//# sourceMappingURL=ur-w9CD4c6z-im9bWpe0-D9dm641G.js.map
+//# sourceMappingURL=ur-w9CD4c6z-im9bWpe0-D9dm641G.js.map
