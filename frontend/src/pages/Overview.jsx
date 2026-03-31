@@ -1,6 +1,8 @@
 import Intro from '../components/Intro.jsx';
 import KPIs from '../components/KPIs.jsx';
 import { overviewKPIs } from '../kpiData.js';
+import Embeddable from  '../components/Embeddable.jsx';
+
 
 const changeWords = ['Welcome!', 'Overview',];
 
@@ -14,19 +16,20 @@ export default function Overview({setActivePage}){
 
 <p className="introPara"> {getRandomWord(changeWords.length)}  </p>
     <Intro />
+    <Embeddable/>
     <main>
-        <section id="Kpis">
+        
+       <section id="Kpis">
             <h2>Primary KPIS</h2>
             <ul>
                 {overviewKPIs.slice(0, 3).map((kpi) =>(<KPIs key={kpi.title} {...kpi} setActivePage={setActivePage} />))}
             </ul>
         </section>
         <section id="secondaryKpis">
-            <ul>
+           <ul>
                {overviewKPIs.slice(3).map((kpis) => (<KPIs key={kpis.title} {...kpis} setActivePage={setActivePage} />))}
-            </ul>
-        </section>
-    </main>
+            </ul>*/
+        </section>    </main>
     </div>
     );
 }

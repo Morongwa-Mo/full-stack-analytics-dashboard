@@ -1,0 +1,113 @@
+
+[2026-03-27T11:54:59.872Z] Command: push
+Breadcrumbs: checkNodeVersion > push by standard login > select workspace > build archive > send build
+Error: AxiosError: Request failed with status code 400
+AxiosError: Request failed with status code 400
+    at settle (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/core/settle.js:19:12)
+    at Unzip.handleStreamEnd (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/adapters/http.js:798:11)
+    at Unzip.emit (node:events:508:28)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    at Axios.request (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/core/Axios.js:46:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async sendBuild (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/push.ts:340:20)
+    at async push (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/push.ts:92:5)
+    at async main (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/loader/entryPoint.js:36:3)
+OS: darwin
+Node: v24.13.0
+SDK Versions: {}
+----------------------------------------
+
+[2026-03-27T11:56:51.190Z] Command: push
+Breadcrumbs: checkNodeVersion > push by standard login > select workspace > build archive > send build
+Error: AxiosError: Request failed with status code 400
+AxiosError: Request failed with status code 400
+    at settle (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/core/settle.js:19:12)
+    at Unzip.handleStreamEnd (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/adapters/http.js:798:11)
+    at Unzip.emit (node:events:508:28)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    at Axios.request (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/core/Axios.js:46:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async sendBuild (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/push.ts:340:20)
+    at async push (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/push.ts:92:5)
+    at async main (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/loader/entryPoint.js:36:3)
+OS: darwin
+Node: v24.13.0
+SDK Versions: {}
+----------------------------------------
+
+[2026-03-27T12:01:00.720Z] Command: push
+Breadcrumbs: checkNodeVersion > push by standard login > select workspace > build archive > send build
+Error: AxiosError: Request failed with status code 400
+AxiosError: Request failed with status code 400
+    at settle (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/core/settle.js:19:12)
+    at Unzip.handleStreamEnd (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/adapters/http.js:798:11)
+    at Unzip.emit (node:events:508:28)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    at Axios.request (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/core/Axios.js:46:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async sendBuild (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/push.ts:340:20)
+    at async push (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/push.ts:92:5)
+    at async main (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/loader/entryPoint.js:36:3)
+OS: darwin
+Node: v24.13.0
+SDK Versions: {}
+----------------------------------------
+
+[2026-03-30T07:19:51.110Z] Command: dev
+Breadcrumbs: uncaughtException
+Error: Error: listen EADDRINUSE: address already in use :::8926
+Error: listen EADDRINUSE: address already in use :::8926
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at dev (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/dev.ts:243:12)
+    at async main (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/loader/entryPoint.js:36:3)
+OS: darwin
+Node: v24.13.0
+SDK Versions: {}
+----------------------------------------
+
+[2026-03-30T07:19:51.110Z] Command: login
+Breadcrumbs: uncaughtException
+Error: Error: listen EADDRINUSE: address already in use :::8926
+Error: listen EADDRINUSE: address already in use :::8926
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at dev (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/dev.ts:243:12)
+    at async main (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/loader/entryPoint.js:36:3)
+OS: darwin
+Node: v24.13.0
+SDK Versions: {}
+----------------------------------------
+
+[2026-03-30T07:35:15.479Z] Command: dev
+Breadcrumbs: uncaughtException
+Error: Error: listen EADDRINUSE: address already in use :::8926
+Error: listen EADDRINUSE: address already in use :::8926
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at dev (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/dev.ts:243:12)
+    at async main (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/loader/entryPoint.js:36:3)
+OS: darwin
+Node: v24.13.0
+SDK Versions: {}
+----------------------------------------
+
+[2026-03-30T09:24:52.957Z] Command: dev
+Breadcrumbs: unhandledRejection
+Error: TypeError: Cannot read properties of undefined (reading 'outputOptions')
+TypeError: Cannot read properties of undefined (reading 'outputOptions')
+    at Object.cleanup (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-react/src/cleanup.ts:9:24)
+    at onClose (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/dev.ts:524:18)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async <anonymous> (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/dev.ts:247:23)
+    at async Promise.all (index 0)
+OS: darwin
+Node: v24.13.0
+SDK Versions: {}
+----------------------------------------

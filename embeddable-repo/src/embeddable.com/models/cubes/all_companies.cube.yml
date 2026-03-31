@@ -1,26 +1,30 @@
 cubes:
-  - name: all_companies
+  - name: companies
     title: Company Data
-    sql_table: all_companies
+    sql_table: hubspot.company
     data_source: hubspot_BQ
-    
+
+    joins:
+     - name: ids
+       sql: "CAST({CUBE}.hs_object_id AS STRING) = CAST({ids}.company_id AS STRING)"
+       relationship: one_to_many
     dimensions:
-      - name: company_id
-        sql: record_id
+      - name: companyID
+        sql: hs_object_id
         type: number
         primary_key: true
 
-      - name: company_name
-        sql: company_name
+      - name: companyName
+        sql: name
         type: string
         
       - name: industry
         sql: industry
         type: string
         
-      - name: number_of_employees
-        sql: number_of_employees
-        type: number
+     # - name: number_of_employees
+      #  sql: number_of_employees
+       # type: number
         
      
     

@@ -1,0 +1,27 @@
+cubes:
+  - name: ids
+    title: joining ids
+    sql_table: hubspot.CompanyContactDealsAssociations
+    data_source: hubspot_BQ
+
+    joins:
+      - name: companies
+        sql: "CAST({CUBE}.company_id AS STRING) = CAST({companies}.hs_object_id AS STRING)"
+        relationship: many_to_one
+
+      - name: deals
+        sql: "CAST({CUBE}.deal_id AS STRING) = CAST({deals}.hs_object_id AS STRING)"
+        relationship: many_to_one
+
+    dimensions:
+      - name: company_id
+        sql: "{CUBE}.company_id"
+        type: string
+
+      - name: deal_id
+        sql: "{CUBE}.deal_id"
+        type: string
+
+
+      
+  

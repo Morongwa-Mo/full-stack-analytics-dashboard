@@ -26,5 +26,5 @@ export default function EmbeddableDashboard() {
   if (error) return <p>Error: {error}</p>;
   if (!token) return <p>Loading dashboard...</p>;
 
-  return React.createElement("em-beddable", { token });
+  return React.createElement("em-beddable", { token});
 } 

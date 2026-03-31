@@ -9,6 +9,14 @@ app.use(express.json());
 
 app.get("/api/token", async (req, res) => {
   try {
+console.log("==== ENV CHECK ====");
+    console.log("Region:", process.env.EMBEDDABLE_REGION);
+    console.log("Dashboard ID:", process.env.EMBEDDABLE_DASHBOARD_ID);
+    console.log("API key prefix:", process.env.EMBEDDABLE_API_KEY?.slice(0, 10));
+    console.log("API key length:", process.env.EMBEDDABLE_API_KEY?.length);
+    console.log("===================");
+
+
     const response = await fetch(
       `https://api.${process.env.EMBEDDABLE_REGION}.embeddable.com/api/v1/security-token`,
       {
@@ -21,7 +29,7 @@ app.get("/api/token", async (req, res) => {
         body: JSON.stringify({
           embeddableId: process.env.EMBEDDABLE_DASHBOARD_ID,
           savedVersion: "production",
-          expiryInSeconds: 60 * 60,
+          expiryInSeconds: 60 * 60 *24* 7, // 7 days
           securityContext: {
             userId: "test-user",
             regions: ["us-east", "eu-west"],
@@ -33,6 +41,7 @@ app.get("/api/token", async (req, res) => {
 
     const data = await response.json();
 
+   
     if (!response.ok) {
       return res.status(response.status).json(data);
     }

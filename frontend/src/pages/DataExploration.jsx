@@ -36,7 +36,8 @@ export default function DataExploration() {
           dateRange={dateRange}
           dealStatus={dealStatus}
           >
-          <Embeddable/>
+            <h2>Visualization 1</h2>
+            <p>Visualization 1 will go here</p>
           </DataCharts>
 
           <DataCharts 
