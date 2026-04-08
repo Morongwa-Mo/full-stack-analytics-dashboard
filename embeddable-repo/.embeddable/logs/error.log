@@ -111,3 +111,41 @@ OS: darwin
 Node: v24.13.0
 SDK Versions: {}
 ----------------------------------------
+
+[2026-04-06T15:12:25.122Z] Command: push
+Breadcrumbs: checkNodeVersion > push by standard login > select workspace > build archive > send build
+Error: AxiosError: Request failed with status code 500
+AxiosError: Request failed with status code 500
+    at settle (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/core/settle.js:19:12)
+    at Unzip.handleStreamEnd (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/adapters/http.js:798:11)
+    at Unzip.emit (node:events:508:28)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    at Axios.request (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/core/Axios.js:46:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async sendBuild (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/push.ts:340:20)
+    at async push (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/push.ts:92:5)
+    at async main (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/loader/entryPoint.js:36:3)
+OS: darwin
+Node: v24.13.0
+SDK Versions: {}
+----------------------------------------
+
+[2026-04-06T15:16:16.464Z] Command: push
+Breadcrumbs: checkNodeVersion > push by standard login > select workspace > build archive > send build
+Error: AxiosError: Request failed with status code 500
+AxiosError: Request failed with status code 500
+    at settle (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/core/settle.js:19:12)
+    at Unzip.handleStreamEnd (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/adapters/http.js:798:11)
+    at Unzip.emit (node:events:508:28)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:89:21)
+    at Axios.request (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/axios/lib/core/Axios.js:46:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async sendBuild (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/push.ts:340:20)
+    at async push (/Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/src/push.ts:92:5)
+    at async main (file:///Users/morongwa/embeddable_hubspot_dash/embeddable-repo/node_modules/@embeddable.com/sdk-core/loader/entryPoint.js:36:3)
+OS: darwin
+Node: v24.13.0
+SDK Versions: {}
+----------------------------------------

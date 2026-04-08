@@ -31,6 +31,25 @@ cubes:
         sql: dealstage
         type: string
 
+      - name: stage_grouped
+        sql: |
+          CASE
+          WHEN LOWER({CUBE}.dealstage) = 'closedwon' THEN 'Closed Won'
+          WHEN LOWER({CUBE}.dealstage) = 'closedlost' THEN 'Closed Lost'
+          WHEN LOWER({CUBE}.dealstage) = 'contractsent' THEN 'Contract Sent'
+          WHEN {CUBE}.dealstage IS NULL THEN 'Unknown'
+          ELSE 'Early Stage'
+          END
+        type: string
+        
+      - name: dealsStageFiltered
+        sql: | 
+          CASE
+            WHEN  LOWER({CUBE}.dealstage) IN ('closedwon', 'closedlost', 'contractsent')
+            THEN {CUBE}.dealstage
+            ELSE NULL
+          END
+        type: string
      # - name: deal_type
       #  sql: deal_type
        # type: string
@@ -51,6 +70,10 @@ cubes:
         sql: "TIMESTAMP({CUBE}.createdate)"
         type: time
 
+      - name: createDateOnly
+        sql: "DATE(TIMESTAMP({CUBE}.createdate))"
+        type: time
+
       - name: amount
         sql: amount
         type: number
@@ -64,20 +87,47 @@ cubes:
         #type: number
     
     measures:
-        
+     
       - name: totalRevenue
+        type: sum
+        sql: CASE
+            WHEN {CUBE}.dealstage = 'closedwon'
+            THEN amount
+            END
+        
+      - name: totalDealsValue
         type: sum
         sql: amount
 
       - name: totalDeals
         type: count
+    
+
+      - name: totalDealsFinalStage
+        type: count
+        filters:
+         - sql: "{dealsStageFiltered} IS NOT NULL"
+
+
+      - name: totalDealEarlyStage
+        type: count
+        filters:
+         - sql: "{CUBE}.dealStage NOT IN ('closedwon','closedlost','contractsent')"
         
       - name: average_days_to_close_deal
         type: avg
-        sql:  CASE
-               WHEN {CUBE}.dealstage IN ('closedwon', 'closedlost')
-               THEN DATE_DIFF(DATE(TIMESTAMP(closedate)), DATE(TIMESTAMP(createdate)), DAY)
-             END
+        sql: >
+         CASE
+          WHEN {CUBE}.dealstage IN ('closedwon', 'closedlost')
+          AND {CUBE}.closedate IS NOT NULL
+          AND {CUBE}.createdate IS NOT NULL
+           AND DATE(TIMESTAMP({CUBE}.closedate)) >= DATE(TIMESTAMP({CUBE}.createdate))
+          THEN DATE_DIFF(
+          DATE(TIMESTAMP({CUBE}.closedate)),
+          DATE(TIMESTAMP({CUBE}.createdate)),
+          DAY
+          )
+         END
 
       - name: closedDeals
         type: sum
@@ -123,7 +173,7 @@ cubes:
 
       - name: overall_conversion_rate
         type: number
-        sql: "{wonDeals}* 1.0 / NULLIF({closedDeals},0) "
+        sql: "{wonDeals}* 1.0 / NULLIF({totalDeals},0) * 100"
 
      # - name: qualified_to_won_rate
       #  type: number

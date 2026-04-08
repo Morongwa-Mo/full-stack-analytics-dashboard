@@ -147,10 +147,8 @@
 }
 
 .dataExploration {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  margin-top: 0px;
+
+ padding: 0 40px;
 }
 
 
@@ -161,10 +159,18 @@
   gap: 20px;
 }
 
-.datViz {
+.datViz1 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  min-width: 300px;
+}
+
+atViz {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  min-width: 1000px;
 }
 
 .vis1 {
@@ -179,7 +185,7 @@
   background: white;
   border-radius: 10px;
   padding: 20px;
-  min-height: 400px;
+  min-width: 800px;
 }
 
 .vis3, .vis4 {
@@ -281,7 +287,7 @@
 
   color-scheme: light dark;
   color: rgba(4, 2, 21, 0.87);
-  background-color: #d0e1ee;
+  background-color: #94a8b6;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

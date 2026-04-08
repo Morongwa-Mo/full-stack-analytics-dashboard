@@ -13,7 +13,7 @@ export default function DataExploration() {
   return (
 
     <main className="dataExploration">
-     <section className='filters'>
+     {/*<section className='filters'>
       <DatFilters 
         dateRange={dateRange}
         setDateRange={setDateRange}
@@ -28,9 +28,10 @@ export default function DataExploration() {
           <h1>Raw Data Exploration</h1>
           <p>Analyze detailed metrics and trends with customizable filters</p>
      </div>
-    
-     <section className='datViz'>
-          <DataCharts 
+    */}
+    {/* <section className='datViz'>*/}
+      <Embeddable embeddableId="907cb1a8-570f-41c2-9114-7b6bd5d2d59f"/>
+         {/*} <DataCharts 
           className='vis1'
           selectedCompany={selectedCompany}
           dateRange={dateRange}
@@ -51,7 +52,7 @@ export default function DataExploration() {
           </DataCharts >
      </section>
 
-    <section className='datViz'>
+<section className='datViz1'>
           <DataCharts 
           className='vis3' 
           selectedCompany={selectedCompany}
@@ -71,8 +72,8 @@ export default function DataExploration() {
             <h2>Insights card</h2>
             <p>Insights will go here</p>
           </DataCharts >
-    </section>
-     </section>
+    </section>  
+     </section>*/}
     </main>
   );
 }
