@@ -20,7 +20,6 @@ export default function Overview({setActivePage, embeddableId}){
          <Embeddable embeddableId="90c56d19-a74b-4783-a07b-0d7cdefa0b61"/>
 
         </section>
-        
          </main>
     </div>
     );

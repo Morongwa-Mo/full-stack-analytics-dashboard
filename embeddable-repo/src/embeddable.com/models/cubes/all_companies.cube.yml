@@ -8,6 +8,7 @@ cubes:
      - name: ids
        sql: "CAST({CUBE}.hs_object_id AS STRING) = CAST({ids}.company_id AS STRING)"
        relationship: one_to_many
+
     dimensions:
       - name: companyID
         sql: hs_object_id
@@ -22,9 +23,138 @@ cubes:
         sql: industry
         type: string
         
+      - name: industryClean
+        sql: |
+         CASE
+         
+         WHEN {CUBE}.industry IS NULL OR TRIM({CUBE}.industry) = '' THEN 'Unknown'
+
+         -- HEALTHCARE
+         WHEN TRIM(UPPER({CUBE}.industry)) IN (
+          'HOSPITAL_HEALTH_CARE',
+         'HEALTH_WELLNESS_AND_FITNESS',
+         'MEDICAL_DEVICES',
+          'MEDICAL_PRACTICE',
+         'MENTAL_HEALTH_CARE',
+         'PHARMACEUTICALS',
+         'BIOTECHNOLOGY',
+         'INDIVIDUAL_FAMILY_SERVICES'
+         ) THEN 'Healthcare'
+
+         -- TECH / IT
+         WHEN TRIM(UPPER({CUBE}.industry)) IN (
+         'COMPUTER_SOFTWARE',
+          'INFORMATION_TECHNOLOGY_AND_SERVICES',
+         'COMPUTER_NETWORKING',
+         'TELECOMMUNICATIONS',
+         'WIRELESS',
+         'CONSUMER_ELECTRONICS'
+         ) THEN 'IT & Software'
+
+          -- FINANCE
+         WHEN TRIM(UPPER({CUBE}.industry)) IN (
+          'BANKING',
+         'FINANCIAL_SERVICES',
+         'CAPITAL_MARKETS',
+         'INSURANCE',
+         'INVESTMENT_MANAGEMENT',
+         'VENTURE_CAPITAL_PRIVATE_EQUITY',
+         'ACCOUNTING'
+         ) THEN 'Finance'
+
+         -- EDUCATION
+          WHEN TRIM(UPPER({CUBE}.industry)) IN (
+          'HIGHER_EDUCATION',
+         'EDUCATION_MANAGEMENT'
+          ) THEN 'Education'
+
+         -- CONSULTING / BUSINESS SERVICES
+         WHEN TRIM(UPPER({CUBE}.industry)) IN (
+          'MANAGEMENT_CONSULTING',
+          'HUMAN_RESOURCES',
+         'STAFFING_AND_RECRUITING',
+          'PROFESSIONAL_TRAINING_COACHING',
+         'LEGAL_SERVICES'
+         ) THEN 'Business Services'
+
+         -- INDUSTRY / ENGINEERING / MANUFACTURING
+         WHEN TRIM(UPPER({CUBE}.industry)) IN (
+         'CONSTRUCTION',
+         'BUILDING_MATERIALS',
+         'CIVIL_ENGINEERING',
+         'MECHANICAL_OR_INDUSTRIAL_ENGINEERING',
+         'ELECTRICAL_ELECTRONIC_MANUFACTURING',
+         'MACHINERY',
+         'CHEMICALS',
+         'MINING_METALS',
+         'OIL_ENERGY',
+         'UTILITIES',
+         'DEFENSE_SPACE'
+         ) THEN 'Industrial'
+
+         -- CONSUMER / RETAIL
+         WHEN TRIM(UPPER({CUBE}.industry)) IN (
+         'RETAIL',
+         'APPAREL_FASHION',
+         'CONSUMER_GOODS',
+         'CONSUMER_SERVICES',
+         'COSMETICS',
+         'FOOD_BEVERAGES',
+         'FOOD_PRODUCTION',
+         'LUXURY_GOODS_JEWELRY'
+         ) THEN 'Consumer'
+
+          -- MEDIA / MARKETING / CREATIVE
+         WHEN TRIM(UPPER({CUBE}.industry)) IN (
+         'MARKETING_AND_ADVERTISING',
+         'GRAPHIC_DESIGN',
+         'DESIGN',
+          'ONLINE_MEDIA',
+         'PUBLISHING'
+         ) THEN 'Media & Creative'
+  
+         -- TRANSPORT / LOGISTICS
+          WHEN TRIM(UPPER({CUBE}.industry)) IN (
+         'LOGISTICS_AND_SUPPLY_CHAIN',
+          'MARITIME',
+          'AUTOMOTIVE'
+          ) THEN 'Transport & Logistics'
+
+          -- PUBLIC / NON-PROFIT / INTERNATIONAL / RESEARCH
+         WHEN TRIM(UPPER({CUBE}.industry)) IN (
+         'NON_PROFIT_ORGANIZATION_MANAGEMENT',
+         'CIVIC_SOCIAL_ORGANIZATION',
+         'GOVERNMENT_ADMINISTRATION',
+          'INTERNATIONAL_AFFAIRS',
+         'INTERNATIONAL_TRADE_AND_DEVELOPMENT',
+         'FUND_RAISING',
+         'THINK_TANKS',
+         'RESEARCH'
+         ) THEN 'Public & Non-Profit'
+
+         -- REAL ESTATE / TRAVEL / SPORTS
+         WHEN TRIM(UPPER({CUBE}.industry)) IN (
+         'REAL_ESTATE',
+         'LEISURE_TRAVEL_TOURISM',
+         'SPORTS'
+         ) THEN 'Lifestyle & Leisure'
+
+         ELSE 'Other '
+
+          END
+        type: string
      # - name: number_of_employees
       #  sql: number_of_employees
        # type: number
+
+    measures:
+
+      - name: totalHealthcareDeals
+        type: count_distinct
+        sql: CASE
+          WHEN LOWER({CUBE}.industry) IN ('hospital_health_care', 'health_wellness_and_fitness', 'medical_devices', 'medical_practice', 'mental_health_care', 'pharmaceuticals', 'biotechnology', 'individual_family_services')
+          THEN 1
+          END
         
      
     

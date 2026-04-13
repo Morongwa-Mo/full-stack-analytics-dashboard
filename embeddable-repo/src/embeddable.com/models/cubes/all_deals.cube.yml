@@ -6,22 +6,14 @@ cubes:
     
     joins:
       - name: ids
-        sql:  "CAST({CUBE}.hs_object_id AS STRING) = CAST({ids}.deal_id AS STRING)"
+        sql: "CAST({CUBE}.hs_object_id AS STRING) = CAST({ids}.deal_id AS STRING)"
         relationship: one_to_many
 
     dimensions:
       - name: deals_id
-        sql: hs_object_id                                  
+        sql: hs_object_id
         type: number
         primary_key: true
-        
-      #- name: rfp_date
-       # sql: rfp_ate
-        #type: time
-        
-      #- name: proposal_sumission_date
-       # sql: DATE(proposal_submission_date)
-        #type: time
         
       - name: dealName
         sql: dealname
@@ -34,37 +26,22 @@ cubes:
       - name: stage_grouped
         sql: |
           CASE
-          WHEN LOWER({CUBE}.dealstage) = 'closedwon' THEN 'Closed Won'
-          WHEN LOWER({CUBE}.dealstage) = 'closedlost' THEN 'Closed Lost'
-          WHEN LOWER({CUBE}.dealstage) = 'contractsent' THEN 'Contract Sent'
-          WHEN {CUBE}.dealstage IS NULL THEN 'Unknown'
-          ELSE 'Early Stage'
+            WHEN LOWER({CUBE}.dealstage) = 'closedwon' THEN 'Closed Won'
+            WHEN LOWER({CUBE}.dealstage) = 'closedlost' THEN 'Closed Lost'
+            WHEN LOWER({CUBE}.dealstage) = 'contractsent' THEN 'Contract Sent'
+            WHEN {CUBE}.dealstage IS NULL THEN 'Unknown'
+            ELSE 'Early Stage'
           END
         type: string
         
       - name: dealsStageFiltered
         sql: | 
           CASE
-            WHEN  LOWER({CUBE}.dealstage) IN ('closedwon', 'closedlost', 'contractsent')
+            WHEN LOWER({CUBE}.dealstage) IN ('closedwon', 'closedlost', 'contractsent')
             THEN {CUBE}.dealstage
             ELSE NULL
           END
         type: string
-     # - name: deal_type
-      #  sql: deal_type
-       # type: string
-
-    #  - name: deal_owner
-    #    sql: deal_owner
-     #   type: string
-
-      #- name: closed_won
-       # sql: Is_closed_won
-        #type: boolean
-
-     # - name: closed_lost
-      #  sql: Is_closed_lost
-       # type: boolean
 
       - name: createDate
         sql: "TIMESTAMP({CUBE}.createdate)"
@@ -78,105 +55,196 @@ cubes:
         sql: amount
         type: number
 
-     # - name: days_to_close
-      #  sql: days_to_close
-       # type: number
-
-      #- name: deal_probability
-       # sql: deal_probability
-        #type: number
     
     measures:
-     
       - name: totalRevenue
         type: sum
         sql: CASE
-            WHEN {CUBE}.dealstage = 'closedwon'
-            THEN amount
-            END
+          WHEN {CUBE}.dealstage = 'closedwon'
+          THEN amount
+          END
         
       - name: totalDealsValue
         type: sum
         sql: amount
 
       - name: totalDeals
-        type: count
-    
+        type: count_distinct
+        sql: hs_object_id
 
       - name: totalDealsFinalStage
-        type: count
+        type: count_distinct
+        sql: hs_object_id
         filters:
-         - sql: "{dealsStageFiltered} IS NOT NULL"
-
+          - sql: "{dealsStageFiltered} IS NOT NULL"
 
       - name: totalDealEarlyStage
-        type: count
+        type: count_distinct
+        sql: hs_object_id
         filters:
-         - sql: "{CUBE}.dealStage NOT IN ('closedwon','closedlost','contractsent')"
+          - sql: "{CUBE}.dealStage NOT IN ('closedwon','closedlost','contractsent')"
         
       - name: average_days_to_close_deal
         type: avg
         sql: >
-         CASE
-          WHEN {CUBE}.dealstage IN ('closedwon', 'closedlost')
-          AND {CUBE}.closedate IS NOT NULL
-          AND {CUBE}.createdate IS NOT NULL
-           AND DATE(TIMESTAMP({CUBE}.closedate)) >= DATE(TIMESTAMP({CUBE}.createdate))
-          THEN DATE_DIFF(
-          DATE(TIMESTAMP({CUBE}.closedate)),
-          DATE(TIMESTAMP({CUBE}.createdate)),
-          DAY
-          )
-         END
+          CASE
+            WHEN {CUBE}.dealstage IN ('closedwon', 'closedlost')
+             AND {CUBE}.closedate IS NOT NULL
+             AND {CUBE}.createdate IS NOT NULL
+             AND DATE(TIMESTAMP({CUBE}.closedate)) >= DATE(TIMESTAMP({CUBE}.createdate))
+            THEN DATE_DIFF(
+              DATE(TIMESTAMP({CUBE}.closedate)),
+              DATE(TIMESTAMP({CUBE}.createdate)),
+              DAY
+            )
+          END
 
       - name: closedDeals
         type: sum
         sql: CASE
-                WHEN {CUBE}.dealstage IN ('closedwon', 'closedlost')
-                THEN 1
-              END
-     
+          WHEN {CUBE}.dealstage IN ('closedwon', 'closedlost')
+          THEN 1
+          END
+
       - name: wonDeals
         type: sum
         sql: CASE
-                WHEN {CUBE}.dealstage = 'closedwon'
-                THEN 1
-              END
+          WHEN {CUBE}.dealstage = 'closedwon'
+          THEN 1
+          END
 
-    #  - name: sales_qualified
-     #   type: count
-     #   sql: CASE
-      #          WHEN deal_stage='Sales qualilified'
-       #         THEN 1
-        #      END
+      - name: wonAmount
+        sql: CASE 
+         WHEN LOWER({CUBE}.dealstage) = 'closedwon' 
+         THEN {CUBE}.amount 
+         ELSE 0 
+         END
+        type: sum
 
-     # - name: new_business_deals
-      ## sql: CASE
-        #        WHEN deal_type = 'New business'
-         #       THEN 1
-          #    END
+      - name: avgWonDealSize
+        sql: 
+          CASE 
+          WHEN {wonDeals} = 0 THEN 0
+          ELSE {wonAmount} * 1.0 / {wonDeals}
+         END
+        type: number
 
-     # - name: existing_business_deals
-      #  type: count
-       # sql: CASE
-        #        WHEN deal_type= 'existing business'
-         #       THEN 1
-          #    END
+      - name: lostAmount
+        sql: CASE 
+          WHEN LOWER({CUBE}.dealstage) = 'closedlost' 
+          THEN {CUBE}.amount 
+          ELSE 0 
+          END
+        type: sum
 
-      #- name: average_request_to_submission_time
-       # type: avg
-        #sql:  CASE
-         #      WHEN proposal_submission_date IS NOT NULL
-            #        AND rfp_date IS NOT NULL
-          #     THEN DATE_DIFF(DATE(proposal_submission_date), DATE(rfp_date), DAY)
-           #  END
+      - name: lostdeals
+        type: sum
+        sql: CASE
+          WHEN {CUBE}.dealstage = 'closedlost'
+          THEN 1
+          END
+      - name: avgLostDealSize
+        sql: 
+          CASE 
+          WHEN {lostdeals} = 0 THEN 0
+          ELSE {lostAmount} * 1.0 / {lostdeals}
+          END
+        type: number
+        
+      - name: wonlostdeals
+        type: sum
+        sql: CASE
+          WHEN {CUBE}.dealstage IN ('closedwon', 'closedlost')
+          THEN 1
+          END
+     
 
       - name: overall_conversion_rate
         type: number
-        sql: "{wonDeals}* 1.0 / NULLIF({totalDeals},0) * 100"
+        sql: "{wonDeals} * 1.0 / NULLIF({totalDeals}, 0) * 100"
 
-     # - name: qualified_to_won_rate
-      #  type: number
-       # sql: {won_deals}* 1.0 / NULLIF({sales_qualified},0) * 100
+      - name: totalHealthcareDeals
+        type: count_distinct
+        sql: hs_object_id
+        filters:
+        - sql: "{companies.industryClean} = 'Healthcare'"
 
+      - name: totalwonHealthcareDeals
+        type: count_distinct
+        sql: hs_object_id
+        filters:
+         - sql: "{companies.industryClean} = 'Healthcare'"
+         - sql: "LOWER({CUBE}.dealstage) = 'closedwon'"
+
+      - name: conversionRateHealthcare
+        type: number
+        sql: "${totalwonHealthcareDeals} * 1.0 / NULLIF(${totalHealthcareDeals}, 0) * 100"
+
+      - name: totalITSoftwareDeals
+        type: count_distinct  
+        sql: hs_object_id
+        filters:
+        - sql: "{companies.industryClean} = 'IT & Software'"
+
+      - name: totalwonITSoftwareDeals
+        type: count_distinct  
+        sql: hs_object_id
+        filters:
+        - sql: "{companies.industryClean} = 'IT & Software'"
+        - sql: "{dealsStageFiltered} = 'closedwon'"
+
+      - name: conversionarateITSoftware
+        type: number  
+        sql: "{totalwonITSoftwareDeals} * 1.0 / NULLIF({totalITSoftwareDeals}, 0) * 100"
+
+      - name: totalFinanceDeals
+        type: count_distinct
+        sql: hs_object_id
+        filters:        
+        - sql: "{companies.industryClean} = 'Finance'"
+
+      - name: totalwonFinanceDeals
+        type: count_distinct
+        sql: hs_object_id
+        filters:
+        - sql: "{companies.industryClean} = 'Finance'"
+        - sql: "{dealsStageFiltered} = 'closedwon'"
+
+      - name: conversionarateFinance  
+        type: number
+        sql: "{totalwonFinanceDeals} * 1.0 / NULLIF({totalFinanceDeals}, 0) * 100"  
+
+      - name: totalEducationDeals
+        type: count_distinct
+        sql: hs_object_id
+        filters:        
+        - sql: "{companies.industryClean} = 'Education'"
+
+      - name: totalwonEducationDeals
+        type: count_distinct
+        sql: hs_object_id
+        filters:      
+        - sql: "{companies.industryClean} = 'Education'"
+        - sql: "{dealsStageFiltered} = 'closedwon'"
+
+      - name: conversionarateEducation
+        type: number
+        sql: "{totalwonEducationDeals} * 1.0 / NULLIF({totalEducationDeals}, 0) * 100"
      
+      - name: totalEarlyStageDeals
+        type: count_distinct
+        sql: hs_object_id
+        filters:
+        - sql: "{dealsStageFiltered} IS NULL"
+
+      - name: totalFinalStageDeals
+        type: count_distinct
+        sql: hs_object_id
+        filters:
+        - sql: "{dealsStageFiltered} IS NOT NULL"
+
+      - name: conversionRateFinalStage
+        type: number
+        sql: "{totalDealsFinalStage} * 1.0 / NULLIF({totalDeals}, 0) * 100"
+
+      
