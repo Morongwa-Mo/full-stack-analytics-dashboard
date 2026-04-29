@@ -74,7 +74,14 @@ The dashboard was developed as part of my work experience and is presented here 
 
 ## Screenshots
 
-_Add screenshots of your dashboard here_
+### Overview
+![Overview](screenshots/Overview.png)
+
+### Data Exploration
+![Data Exploration](screenshots/data_exploration.png)
+
+### Data Drivers / Causal Analysis
+![Data Drivers](screenshots/Data_drivers.png)
 
 ---
 
