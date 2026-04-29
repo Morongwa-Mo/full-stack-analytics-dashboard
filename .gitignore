@@ -4,4 +4,8 @@ node_modules/
 #Ignore .env
 .env
 #Ignore servive account file within
-backend/secrets
+backend/secrets.env
+backend/secrets/
+.vite/
+embeddable-repo/.embeddable-build
+embeddable-repo/.embeddable-dev-build
