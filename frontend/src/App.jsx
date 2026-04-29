@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Header from './components/Header.jsx'; 
 import Overview from './pages/Overview.jsx';
 import DataExploration from './pages/DataExploration.jsx';
-import Causal from './pages/CausalAnalysis.jsx';
+import Drivers from './pages/DataDrivers.jsx';
 
 
 export default function App() {
@@ -16,7 +16,7 @@ export default function App() {
 
     {activePage === "Overview" && <Overview setActivePage={setActivePage}/>}
     {activePage === "Data Exploration" && <DataExploration />}
-    {activePage === "Deal Drivers" && <Causal />}
+    {activePage === "Deal Drivers" && <Drivers />}
 
     </div>
   )    

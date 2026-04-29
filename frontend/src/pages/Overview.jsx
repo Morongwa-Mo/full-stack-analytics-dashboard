@@ -13,7 +13,6 @@ export default function Overview({setActivePage, embeddableId}){
         <div>
 
 <p className="introPara"> {getRandomWord(changeWords.length)}  </p>
-    {/*<Intro />*/}
    
     <main>
         <section id="Kpis">
