@@ -16,7 +16,7 @@ export default function App() {
 
     {activePage === "Overview" && <Overview setActivePage={setActivePage}/>}
     {activePage === "Data Exploration" && <DataExploration />}
-    {activePage === "Causal Analysis" && <Causal />}
+    {activePage === "Deal Drivers" && <Causal />}
 
     </div>
   )    

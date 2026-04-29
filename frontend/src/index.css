@@ -1,3 +1,10 @@
+main {
+  padding: 0 40px 40px 40px;
+}
+
+section {
+  margin-top: 24px;
+}
 .title{
   margin: 20px 30px 20px 30px;
   border-bottom:1px solid rgb(31, 10, 93);
@@ -45,14 +52,6 @@
   box-shadow: 0 4px 12px rgba(19, 19, 205, 0.08);/* soft background */
 
 }
-#Kpis ul {
-  display: flex;
-  justify-content: space-evenly;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  gap: 2em;
-}
 
 
 #Kpis {
@@ -66,37 +65,36 @@
 #causalAnalysis {
  padding: 0 50px;
 }
+.kpi-value {
+  font-size: 32px;
+  font-weight: 600;
+}
 
 .insight-card {
-  background: #ffffff;
+  background: white;
   border-radius: 16px;
   padding: 20px;
   margin-top: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.insight-title {
+.insight-card h3 {
   margin: 0 0 8px 0;
-  font-size: 1.25rem;
-  font-weight: 700;
 }
 
-.insight-subtitle {
-  margin: 0 0 12px 0;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #555;
+.insight-card p {
+  margin: 0 0 10px 0;
+  line-height: 1.5;
 }
-
-.insight-text {
-  margin: 0;
-  line-height: 1.6;
-  color: #222;
-}
-
 .logo {
-  height: 40px;
+  height: 58px;          /* smaller, cleaner for nav */
+  width: auto;           /* maintain aspect ratio */
+  object-fit: contain;   /* prevents distortion */
+  display: block;
+}
 
+.top-bar {
+  padding: 24px 40px 10px 40px; /* increase left/right */
 }
 
 
@@ -107,7 +105,7 @@
 
   color-scheme: light dark;
   color: rgba(4, 2, 21, 0.87);
-  background-color: #94a8b6;
+  background-color: #A8B9C4;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

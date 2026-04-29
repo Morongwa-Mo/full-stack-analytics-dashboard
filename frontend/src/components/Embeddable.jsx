@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-export default function EmbeddableDashboard({ embeddableId }) {
+export default function EmbeddableDashboard({
+  embeddableId,
+  onVariablesChange,
+}) {
   const [token, setToken] = useState("");
   const [error, setError] = useState("");
+  const embeddableRef = useRef(null);
 
   useEffect(() => {
     const getToken = async () => {
@@ -25,10 +29,44 @@ export default function EmbeddableDashboard({ embeddableId }) {
     getToken();
   }, [embeddableId]);
 
+  useEffect(() => {
+    const element = embeddableRef.current;
+    if (!element) return;
+
+   const handleVariablesChange = (e) => {
+  console.log("variablesChange fired raw:", e.detail);
+  console.log("variablesChange fired json:", JSON.stringify(e.detail));
+
+  const updates = Object.fromEntries(
+    (e.detail || []).map((item) => [item.variableName, item.newValue])
+  );
+
+  console.log("parsed updates:", JSON.stringify(updates));
+
+  onVariablesChange?.((prev) => ({
+    ...prev,
+    ...updates,
+  }));
+};
+
+    const handleEmbeddableError = (e) => {
+      console.error("Embeddable error:", e.detail);
+    };
+
+    element.addEventListener("variablesChange", handleVariablesChange);
+    element.addEventListener("embeddableError", handleEmbeddableError);
+
+    return () => {
+      element.removeEventListener("variablesChange", handleVariablesChange);
+      element.removeEventListener("embeddableError", handleEmbeddableError);
+    };
+  }, [onVariablesChange]);
+
   if (error) return <p>Error: {error}</p>;
   if (!token) return <p>Loading dashboard...</p>;
 
   return React.createElement("em-beddable", {
+    ref: embeddableRef,
     token,
     "embeddable-id": embeddableId,
   });

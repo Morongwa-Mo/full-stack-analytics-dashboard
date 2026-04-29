@@ -1,8 +1,8 @@
-import Intro from '../components/Intro.jsx';
+
 import Embeddable from  '../components/Embeddable.jsx';
 
 
-const changeWords = ['Welcome!', 'Overview',];
+const changeWords = ['Welcome!', 'Welcome back!'];
 
 function getRandomWord(max) {
     return changeWords[Math.floor(Math.random() * max)];

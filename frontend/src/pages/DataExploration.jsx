@@ -1,18 +1,9 @@
-import { useState } from 'react';
-import DatFilters from '../components/DataFilters.jsx';
-import DataCharts from '../components/DataCharts.jsx';
+
 import Embeddable from  '../components/Embeddable.jsx';
 
 
 export default function DataExploration() {
-  const [variables, setVariables] = useState({
-    industry: "",
-  });
-
-  const [dateRange, setDateRange] = useState(" ");
-  const [selectedCompany, setSelectedCompany] = useState(" ");
-  const [dealStatus, setDealStatus] = useState(" ");
-
+  
   return (
 
     <main>

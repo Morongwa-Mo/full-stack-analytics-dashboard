@@ -1,11 +1,9 @@
-import { useState } from 'react';
+
 import Embeddable from  '../components/Embeddable.jsx';
 
 export default function Causal() {
 
-    const [dateRange, setDateRange] = useState(" ");
-    const [segment, setSegment] = useState( " ");
-
+    
     return (
         <main>
          <p className="introPara"> Investigate why deals are won or lost by analysing key drivers within each industry.</p>   

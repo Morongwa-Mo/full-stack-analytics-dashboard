@@ -29,6 +29,7 @@ cubes:
             WHEN LOWER({CUBE}.dealstage) = 'closedwon' THEN 'Closed Won'
             WHEN LOWER({CUBE}.dealstage) = 'closedlost' THEN 'Closed Lost'
             WHEN LOWER({CUBE}.dealstage) = 'contractsent' THEN 'Contract Sent'
+            WHEN LOWER({CUBE}.dealstage) = '1918785774' THEN 'Sales Qualified Lead'
             WHEN {CUBE}.dealstage IS NULL THEN 'Unknown'
             ELSE 'Early Stage'
           END
@@ -42,6 +43,10 @@ cubes:
             ELSE NULL
           END
         type: string
+
+      - name: closeDate
+        sql: "TIMESTAMP({CUBE}.closedate)"
+        type: time
 
       - name: createDate
         sql: "TIMESTAMP({CUBE}.createdate)"
@@ -158,10 +163,13 @@ cubes:
           THEN 1
           END
      
+      - name: winRate
+        type: number
+        sql: "{wonDeals} * 1.0 / NULLIF({closedDeals}, 0) * 100"
 
       - name: overall_conversion_rate
         type: number
-        sql: "{wonDeals} * 1.0 / NULLIF({totalDeals}, 0) * 100"
+        sql: "{wonDeals}  / NULLIF({totalDeals}, 0) * 100"
 
       - name: totalHealthcareDeals
         type: count_distinct
@@ -231,6 +239,23 @@ cubes:
         type: number
         sql: "{totalwonEducationDeals} * 1.0 / NULLIF({totalEducationDeals}, 0) * 100"
      
+      - name: totalBusinessServicesDeals
+        type: count_distinct
+        sql: hs_object_id
+        filters:        
+        - sql: "{companies.industryClean} = 'Business Services'"
+
+      - name: totalwonBusinessServicesDeals
+        type: count_distinct
+        sql: hs_object_id
+        filters:      
+        - sql: "{companies.industryClean} = 'Business Services'"
+        - sql: "{dealsStageFiltered} = 'closedwon'"
+
+      - name: conversionarateBusinessServices
+        type: number
+        sql: "{totalwonBusinessServicesDeals} * 1.0 / NULLIF({totalBusinessServicesDeals}, 0) * 100"    
+
       - name: totalEarlyStageDeals
         type: count_distinct
         sql: hs_object_id

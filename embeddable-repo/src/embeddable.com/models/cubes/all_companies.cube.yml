@@ -27,7 +27,7 @@ cubes:
         sql: |
          CASE
          
-         WHEN {CUBE}.industry IS NULL OR TRIM({CUBE}.industry) = '' THEN 'Unknown'
+         WHEN {CUBE}.industry IS NULL OR TRIM({CUBE}.industry) = '' THEN 'Uncategorized'
 
          -- HEALTHCARE
          WHEN TRIM(UPPER({CUBE}.industry)) IN (

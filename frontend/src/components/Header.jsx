@@ -11,7 +11,7 @@ export default function Header({setActivePage}){
               <ul className='tabList'> 
                     <TabButton setActivePage={setActivePage}>Overview</TabButton>
                     <TabButton setActivePage={setActivePage}>Data Exploration</TabButton>
-                    <TabButton setActivePage={setActivePage}>Causal Analysis</TabButton>
+                    <TabButton setActivePage={setActivePage}>Deal Drivers</TabButton>
             </ul>
             </section>
            

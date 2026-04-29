@@ -55,9 +55,30 @@ app.get("/api/token", async (req, res) => {
     console.error("Token generation error:", error);
     res.status(500).json({ error: "Failed to generate token" });
   }
+}
+);
+
+app.get("/api/metrics", async (req, res) => {
+  const industry = req.query.industry;
+
+  if (!industry) {
+    return res.status(400).json({ error: "Industry is required" });
+  }
+
+  try {
+    // Replace this temporary block with your real query later
+    const data = {
+      conversionRate: 63,
+      averageDealsWon: 342000,
+      averageDealsLost: 3000000,
+      avgDaysToClose: 178,
+    };
+
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
-
-
 
 const PORT = 3001;
 app.listen(PORT, () => {
